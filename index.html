@@ -8,10 +8,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --main-color: #6C5CE7;
-            --secondary-color: #A8A4FF;
-            --dark-bg: #0A0A16;
-            --text-color: #F0F0FF;
+            --main-color: #FF3E3E;
+            --secondary-color: #FF7E7E;
+            --dark-bg: #1A0000;
+            --text-color: #FFE0E0;
         }
 
         /* Темы */
@@ -20,11 +20,6 @@
             --secondary-color: #6C5CE7;
             --dark-bg: #00051A;
             --text-color: #E0F4FF;
-            background: 
-                radial-gradient(circle at 50% 50%, 
-                    rgba(0,254,252,0.1) 0%, 
-                    rgba(0,0,0,0.9) 100%),
-                url('data:image/svg+xml,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect fill="%23000F2E" width="200" height="200"/><circle cx="30" cy="45" r="1" fill="%23FFF"/><circle cx="180" cy="80" r="1" fill="%23FFF"/><circle cx="120" cy="150" r="1.2" fill="%23FFF"/></svg>');
         }
 
         body.moon-theme {
@@ -32,11 +27,13 @@
             --secondary-color: #8884FF;
             --dark-bg: #1A1A2E;
             --text-color: #FFFFFF;
-            background: 
-                radial-gradient(circle at 80% 20%, 
-                    rgba(226,226,226,0.1) 0%, 
-                    rgba(26,26,46,1) 60%),
-                linear-gradient(to bottom, #1A1A2E 0%, #000000 100%);
+        }
+
+        body.blood-theme {
+            --main-color: #FF3E3E;
+            --secondary-color: #FF7E7E;
+            --dark-bg: #1A0000;
+            --text-color: #FFE0E0;
         }
 
         * {
@@ -59,6 +56,12 @@
         @keyframes starfall {
             0% { transform: translateY(-100vh) rotate(45deg); opacity: 0; }
             100% { transform: translateY(100vh) rotate(45deg); opacity: 0.7; }
+        }
+
+        @keyframes highlight {
+            0% { background: rgba(255,62,62,0.1); }
+            50% { background: rgba(255,62,62,0.3); }
+            100% { background: rgba(255,62,62,0.1); }
         }
 
         .stars-container {
@@ -148,6 +151,7 @@
 
         section {
             margin-bottom: 30px;
+            padding: 20px 0;
         }
 
         h2 {
@@ -178,6 +182,7 @@
             border-radius: 50%;
             top: 30%;
             left: 30%;
+            transition: opacity 0.3s;
         }
 
         .aim-circle {
@@ -270,6 +275,10 @@
 
         .theme-moon {
             background: rgba(226,226,226,0.1);
+        }
+
+        .theme-blood {
+            background: rgba(255,62,62,0.1);
         }
 
         .skeleton {
@@ -397,10 +406,26 @@
             font-size: 0.9rem;
         }
 
+        /* Новые стили для динамических описаний */
+        .desc-item {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .desc-item.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         .feature-desc {
             margin-top: 15px;
             font-size: 0.95rem;
             line-height: 1.5;
+            min-height: 80px;
         }
 
         .admin-card {
@@ -625,9 +650,46 @@
         .glitch-text {
             animation: glitch 5s infinite;
         }
+
+        .quick-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin: 20px 0;
+            padding: 0 10px;
+        }
+
+        .nav-btn {
+            padding: 8px 15px;
+            background: rgba(108,92,231,0.2);
+            border: 1px solid var(--main-color);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .nav-btn:hover {
+            background: var(--main-color);
+            transform: translateY(-2px);
+            box-shadow: 0 2px 10px var(--main-color);
+        }
+
+        @media (max-width: 768px) {
+            .quick-nav {
+                gap: 5px;
+            }
+            .nav-btn {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+        }
     </style>
 </head>
-<body>
+<body class="blood-theme">
     <div class="stars-container" id="starsContainer"></div>
 
     <div class="mobile-header">
@@ -649,6 +711,15 @@
     </div>
 
     <div class="container">
+        <div class="quick-nav">
+            <button class="nav-btn" data-section="news">Новости</button>
+            <button class="nav-btn" data-section="features">Функции</button>
+            <button class="nav-btn" data-section="pricing">Цены</button>
+            <button class="nav-btn" data-section="tutorials">Инструкция</button>
+            <button class="nav-btn" data-section="rules">Правила</button>
+            <button class="nav-btn" onclick="window.open('https://t.me/FLAY_PROJECT', '_blank')">Канал</button>
+        </div>
+
         <section id="home">
             <h2 class="glitch-text">FLAY PROJECT</h2>
             <p style="text-align: center; margin-bottom: 20px;">Самый безопасный высокоуровневый чит для PUBG Mobile с защитой от бана</p>
@@ -683,7 +754,18 @@
             </div>
             
             <div class="feature-desc">
-                <p><strong>AimBot</strong> - автоматическое наведение на противников с регулируемой плавностью и полем зрения (FOV). После выключения точка прицеливания остается на последней цели.</p>
+                <div id="aim-desc" class="desc-item active">
+                    <p><strong>AimBot</strong> - автоматическое наведение на противников с регулируемой плавностью и полем зрения (FOV). После выключения точка прицеливания остается на последней цели.</p>
+                </div>
+                <div id="esp-desc" class="desc-item">
+                    <p><strong>ESP</strong> - режим сквозного зрения: отображение врагов через стены, их здоровья и экипировки в реальном времени.</p>
+                </div>
+                <div id="skeleton-desc" class="desc-item">
+                    <p><strong>Скелетон</strong> - отображение костной структуры противников для точного определения уязвимых точек.</p>
+                </div>
+                <div id="hotbar-desc" class="desc-item">
+                    <p><strong>Hot Bar</strong> - интеллектуальная панель быстрого доступа к оружию и расходникам с автоматической оптимизацией инвентаря.</p>
+                </div>
             </div>
         </section>
 
@@ -816,7 +898,7 @@
             </div>
             <p class="copyright">© 2024 FLAY PROJECT. Все права защищены.</p>
         </footer>
-    </div>
+</div>
 
     <div class="theme-switcher">
         <button class="theme-btn theme-stars" data-theme="stars" title="Звездопад">
@@ -825,38 +907,35 @@
         <button class="theme-btn theme-moon" data-theme="moon" title="Луна во тьме">
             <i class="fas fa-moon"></i>
         </button>
+        <button class="theme-btn theme-blood" data-theme="blood" title="Кровавая луна">
+            <i class="fas fa-fire"></i>
+        </button>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Мобильное меню
             const menuBtn = document.getElementById('menuBtn');
             const mobileMenu = document.getElementById('mobileMenu');
-            menuBtn.addEventListener('click', function() {
-                mobileMenu.classList.toggle('show');
-            });
+            menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('show'));
 
-            const aimCircle = document.getElementById('aimCircle');
+            // Элементы управления демо
+            const controlBtns = document.querySelectorAll('.control-btn');
             const target = document.getElementById('target');
+            const aimCircle = document.getElementById('aimCircle');
             const skeleton = document.getElementById('skeleton');
             const espBox = document.getElementById('espBox');
             const hotBar = document.getElementById('hotBar');
             const hotBarFill = document.getElementById('hotBarFill');
             const fovSlider = document.getElementById('fovSlider');
             const fovValue = document.getElementById('fovValue');
-            const controlBtns = document.querySelectorAll('.control-btn');
-            
+
             let aimAnimationInterval = null;
             let hotBarAnimationInterval = null;
 
             function stopAllAnimations() {
-                if (aimAnimationInterval) {
-                    clearInterval(aimAnimationInterval);
-                    aimAnimationInterval = null;
-                }
-                if (hotBarAnimationInterval) {
-                    clearInterval(hotBarAnimationInterval);
-                    hotBarAnimationInterval = null;
-                }
+                if (aimAnimationInterval) clearInterval(aimAnimationInterval);
+                if (hotBarAnimationInterval) clearInterval(hotBarAnimationInterval);
             }
 
             controlBtns.forEach(btn => {
@@ -864,25 +943,38 @@
                     stopAllAnimations();
                     controlBtns.forEach(b => b.classList.remove('active'));
                     this.classList.add('active');
-                    const controlType = this.dataset.control;
+                    
+                    // Скрыть все элементы
+                    target.style.opacity = '0';
                     skeleton.style.opacity = '0';
                     espBox.style.opacity = '0';
                     hotBar.style.opacity = '0';
                     aimCircle.style.opacity = '0';
-                    
-                    switch(controlType) {
+
+                    // Скрыть все описания
+                    document.querySelectorAll('.desc-item').forEach(item => {
+                        item.classList.remove('active');
+                    });
+
+                    // Показать выбранный элемент и описание
+                    switch(this.dataset.control) {
                         case 'aim':
+                            target.style.opacity = '1';
                             aimCircle.style.opacity = '1';
+                            document.getElementById('aim-desc').classList.add('active');
                             animateAim();
                             break;
                         case 'esp':
                             espBox.style.opacity = '1';
+                            document.getElementById('esp-desc').classList.add('active');
                             break;
                         case 'skeleton':
                             skeleton.style.opacity = '1';
+                            document.getElementById('skeleton-desc').classList.add('active');
                             break;
                         case 'hotbar':
                             hotBar.style.opacity = '1';
+                            document.getElementById('hotbar-desc').classList.add('active');
                             animateHotBar();
                             break;
                     }
@@ -890,17 +982,19 @@
             });
 
             function animateAim() {
-                const randomX = Math.random() * 70 + 15;
-                const randomY = Math.random() * 70 + 15;
-                target.style.left = randomX + '%';
-                target.style.top = randomY + '%';
-                
-                setTimeout(() => {
-                    aimCircle.style.left = target.style.left;
-                    aimCircle.style.top = target.style.top;
-                }, 300);
-                
-                aimAnimationInterval = setTimeout(animateAim, 2000);
+                const moveTarget = () => {
+                    const randomX = Math.random() * 70 + 15;
+                    const randomY = Math.random() * 70 + 15;
+                    target.style.left = `${randomX}%`;
+                    target.style.top = `${randomY}%`;
+                    
+                    setTimeout(() => {
+                        aimCircle.style.left = target.style.left;
+                        aimCircle.style.top = target.style.top;
+                    }, 300);
+                };
+                aimAnimationInterval = setInterval(moveTarget, 2000);
+                moveTarget();
             }
 
             function animateHotBar() {
@@ -909,7 +1003,7 @@
                 
                 hotBarAnimationInterval = setInterval(() => {
                     width += 5;
-                    hotBarFill.style.width = width + '%';
+                    hotBarFill.style.width = `${width}%`;
                     if (width >= 100) {
                         clearInterval(hotBarAnimationInterval);
                         setTimeout(() => {
@@ -920,42 +1014,56 @@
                 }, 100);
             }
 
+            // Настройка FOV
             fovSlider.addEventListener('input', function() {
                 const size = this.value;
-                aimCircle.style.width = size + 'px';
-                aimCircle.style.height = size + 'px';
+                aimCircle.style.width = `${size}px`;
+                aimCircle.style.height = `${size}px`;
                 fovValue.textContent = size;
             });
 
-            setTimeout(() => {
-                document.querySelector('[data-control="aim"]').click();
-            }, 500);
+            // Инициализация AimBot
+            setTimeout(() => document.querySelector('[data-control="aim"]').click(), 500);
 
-            document.querySelectorAll('.mobile-menu a').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    if(this.getAttribute('href').startsWith('#')) {
-                        e.preventDefault();
-                        mobileMenu.classList.remove('show');
-                        const targetId = this.getAttribute('href');
-                        const targetElement = document.querySelector(targetId);
-                        if(targetElement) {
-                            window.scrollTo({
-                                top: targetElement.offsetTop - 70,
-                                behavior: 'smooth'
-                            });
-                        }
+            // Навигация по якорям
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const section = document.querySelector(this.getAttribute('href'));
+                    if (section) {
+                        window.scrollTo({
+                            top: section.offsetTop - 70,
+                            behavior: 'smooth'
+                        });
+                        section.style.animation = 'highlight 1.5s';
+                        setTimeout(() => section.style.animation = '', 1500);
                     }
                 });
             });
-            
+
+            // Быстрая навигация
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const section = document.getElementById(this.dataset.section);
+                    if (section) {
+                        window.scrollTo({
+                            top: section.offsetTop - 70,
+                            behavior: 'smooth'
+                        });
+                        section.style.animation = 'highlight 1.5s';
+                        setTimeout(() => section.style.animation = '', 1500);
+                    }
+                });
+            });
+
             // Генерация звезд
             function createStars() {
                 const container = document.getElementById('starsContainer');
                 for(let i = 0; i < 100; i++) {
                     const star = document.createElement('div');
                     star.className = 'star';
-                    star.style.left = Math.random() * 100 + '%';
-                    star.style.animationDelay = Math.random() * 8 + 's';
+                    star.style.left = `${Math.random() * 100}%`;
+                    star.style.animationDelay = `${Math.random() * 8}s`;
                     star.style.opacity = Math.random();
                     container.appendChild(star);
                 }
@@ -963,11 +1071,9 @@
             createStars();
 
             // Переключение тем
-            const themeBtns = document.querySelectorAll('.theme-btn');
-            themeBtns.forEach(btn => {
+            document.querySelectorAll('.theme-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
-                    const theme = this.dataset.theme;
-                    document.body.className = theme + '-theme';
+                    document.body.className = `${this.dataset.theme}-theme`;
                 });
             });
         });
