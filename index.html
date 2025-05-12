@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FLAY PROJECT - Премиум чит для PUBG Mobile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --main-color: #ff2a2a;
+            --secondary-color: #ff6b6b;
+            --dark-bg: #0a0a12;
+            --text-color: #e0e0e0;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: var(--text-color);
+            background-color: var(--dark-bg);
+            overflow-x: hidden;
+            user-select: none;
+            -webkit-user-select: none;
+            padding-bottom: 20px;
+            transition: background 0.5s ease;
+        }
+
+        /* Темы */
+        body.beach-theme {
+            --main-color: #ff9500;
+            --secondary-color: #00a8ff;
+            --dark-bg: #0077be;
+            --text-color: #ffffff;
+            background: linear-gradient(to bottom, #0077be 0%, #00b4ff 50%, #ffd700 100%);
+        }
+        
+        body.moon-theme {
+            --main-color: #b19cd9;
+            --secondary-color: #ffccf9;
+            --dark-bg: #0f0524;
+            --text-color: #e0e0ff;
+            background: linear-gradient(to bottom, #0f0524 0%, #2a1055 100%);
+        }
+        
+        body.laser-theme {
+            --main-color: #00ff9d;
+            --secondary-color: #0095ff;
+            --dark-bg: #001529;
+            --text-color: #ffffff;
+            background: linear-gradient(to bottom, #001529 0%, #000000 100%);
+        }
+
+        /* Анимированный туман */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(10,10,18,0.9), rgba(255,42,42,0.05));
+            z-index: -1;
+            animation: fogAnim 20s infinite linear;
+        }
+
+        body.beach-theme::before {
+            background: linear-gradient(45deg, rgba(0,119,190,0.7), rgba(255,149,0,0.1));
+        }
+        
+        body.moon-theme::before {
+            background: linear-gradient(45deg, rgba(15,5,36,0.8), rgba(177,156,217,0.1));
+        }
+        
+        body.laser-theme::before {
+            background: linear-gradient(45deg, rgba(0,21,41,0.8), rgba(0,255,157,0.1));
+        }
+
+        @keyframes fogAnim {
+            0% { transform: translate(0,0) scale(1); opacity: 0.3; }
+            50% { transform: translate(-50%,-20%) scale(1.2); opacity: 0.5; }
+            100% { transform: translate(0,0) scale(1); opacity: 0.3; }
+        }
+
+        /* Мобильный header */
+        .mobile-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(10, 10, 18, 0.95);
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            border-bottom: 2px solid var(--main-color);
+        }
+        
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            color: var(--main-color);
+            font-size: 1.5rem;
+            text-shadow: 0 0 10px var(--main-color);
+        }
+        
+        .menu-btn {
+            color: white;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+        }
+        
+        /* Мобильное меню */
+        .mobile-menu {
+            position: fixed;
+            top: 60px;
+            right: -100%;
+            width: 70%;
+            height: calc(100vh - 60px);
+            background: rgba(15, 15, 25, 0.98);
+            z-index: 99;
+            transition: right 0.3s ease;
+            padding: 20px;
+            border-left: 2px solid var(--main-color);
+        }
+        
+        .mobile-menu.show {
+            right: 0;
+        }
+        
+        .mobile-menu a {
+            display: block;
+            color: var(--text-color);
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 42, 42, 0.2);
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+        
+        .mobile-menu a:hover {
+            color: var(--main-color);
+        }
+        
+        /* Основной контент */
+        .container {
+            padding: 80px 15px 20px;
+            max-width: 100%;
+        }
+        
+        section {
+            margin-bottom: 30px;
+        }
+        
+        h2 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--main-color);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            text-align: center;
+        }
+        
+        /* Демо-контейнер */
+        .demo-container {
+            width: 100%;
+            height: 200px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 42, 42, 0.3);
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            margin: 15px 0;
+        }
+        
+        /* Элементы демо */
+        .target {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            top: 30%;
+            left: 30%;
+        }
+        
+        .aim-circle {
+            position: absolute;
+            border: 2px solid var(--main-color);
+            border-radius: 50%;
+            background: rgba(255, 42, 42, 0.1);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.5s ease;
+        }
+        
+        .skeleton {
+            position: absolute;
+            width: 60px;
+            height: 120px;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .bone {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* Кости скелета */
+        .head {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            top: 0;
+            left: 20px;
+        }
+        
+        .spine {
+            width: 4px;
+            height: 40px;
+            top: 20px;
+            left: 28px;
+        }
+        
+        .arm-left {
+            width: 25px;
+            height: 4px;
+            top: 25px;
+            left: 5px;
+            transform: rotate(20deg);
+        }
+        
+        .arm-right {
+            width: 25px;
+            height: 4px;
+            top: 25px;
+            left: 31px;
+            transform: rotate(-20deg);
+        }
+        
+        .leg-left {
+            width: 4px;
+            height: 35px;
+            top: 60px;
+            left: 22px;
+            transform: rotate(5deg);
+        }
+        
+        .leg-right {
+            width: 4px;
+            height: 35px;
+            top: 60px;
+            left: 34px;
+            transform: rotate(-5deg);
+        }
+        
+        /* ESP Box */
+        .esp-box {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 2px dashed var(--main-color);
+            top: 40%;
+            right: 20%;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        /* Hot Bar */
+        .hot-bar {
+            position: absolute;
+            width: 100px;
+            height: 15px;
+            background: rgba(255, 42, 42, 0.3);
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 5px;
+            overflow: hidden;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .hot-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: var(--main-color);
+            transition: width 0.5s ease;
+        }
+        
+        /* Кнопки управления */
+        .demo-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+            justify-content: center;
+        }
+        
+        .control-btn {
+            padding: 8px 12px;
+            background: rgba(255, 42, 42, 0.2);
+            border: 1px solid var(--main-color);
+            color: white;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .control-btn.active {
+            background: var(--main-color);
+        }
+        
+        /* Настройки FOV */
+        .fov-control {
+            width: 100%;
+            margin-top: 15px;
+        }
+        
+        .fov-slider {
+            width: 100%;
+            -webkit-appearance: none;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            outline: none;
+            border-radius: 5px;
+        }
+        
+        .fov-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 15px;
+            height: 15px;
+            background: var(--main-color);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        
+        .fov-value {
+            text-align: center;
+            margin-top: 5px;
+            font-size: 0.9rem;
+        }
+        
+        /* Описание функций */
+        .feature-desc {
+            margin-top: 15px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Админы */
+        .admin-card {
+            background: rgba(20, 20, 30, 0.7);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255, 42, 42, 0.3);
+        }
+        
+        .admin-name {
+            text-align: center;
+            font-weight: 500;
+            margin-bottom: 5px;
+            color: var(--main-color);
+        }
+        
+        .admin-role {
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+        
+        .admin-bio {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        
+        .admin-quote {
+            font-style: italic;
+            font-size: 0.85rem;
+            color: #aaa;
+            border-top: 1px dashed rgba(255, 42, 42, 0.3);
+            padding-top: 10px;
+        }
+        
+        /* Инструкции */
+        .tutorial-step {
+            background: rgba(20, 20, 30, 0.7);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-left: 3px solid var(--main-color);
+        }
+        
+        .tutorial-step h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: var(--main-color);
+        }
+        
+        .tutorial-step p {
+            font-size: 0.9rem;
+        }
+
+        /* Секция цен */
+        .pricing-section {
+            background: rgba(20, 20, 30, 0.7);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 2px solid var(--main-color);
+        }
+
+        .pricing-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            margin: 10px 0;
+            background: rgba(255,42,42,0.1);
+            border-radius: 8px;
+        }
+
+        .pricing-days {
+            font-weight: 500;
+            color: var(--main-color);
+        }
+
+        .pricing-price {
+            font-family: 'Orbitron', sans-serif;
+            text-shadow: 0 0 8px var(--main-color);
+        }
+
+        .buy-btn {
+            background: var(--main-color);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+        
+        /* Новости */
+        .news-section {
+            background: rgba(20, 20, 30, 0.7);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 2px solid var(--main-color);
+        }
+
+        .news-title {
+            color: var(--main-color);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .news-content {
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        /* Футер */
+        footer {
+            text-align: center;
+            padding: 20px 15px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255, 42, 42, 0.3);
+        }
+        
+        .telegram-btn {
+            display: inline-block;
+            background: var(--main-color);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .support-bot {
+            color: var(--secondary-color);
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+        
+        .copyright {
+            font-size: 0.8rem;
+            color: #aaa;
+        }
+
+        /* Правила */
+        .rules-section {
+            background: rgba(20, 20, 30, 0.7);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 2px solid var(--main-color);
+        }
+
+        .rules-list {
+            padding-left: 20px;
+        }
+
+        .rules-list li {
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+        
+        /* Переключатель тем */
+        .theme-switcher {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .theme-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid var(--main-color);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+        
+        .theme-default {
+            background: linear-gradient(45deg, #0a0a12, #ff2a2a);
+        }
+        
+        .theme-beach {
+            background: linear-gradient(45deg, #0077be, #ff9500);
+        }
+        
+        .theme-moon {
+            background: linear-gradient(45deg, #0f0524, #b19cd9);
+        }
+        
+        .theme-laser {
+            background: linear-gradient(45deg, #001529, #00ff9d);
+        }
+    </style>
+</head>
+<body>
+<div class="mobile-header">
+    <div class="logo">FLAY PROJECT</div>
+    <button class="menu-btn" id="menuBtn">
+        <i class="fas fa-bars"></i>
+    </button>
+</div>
+
+<div class="mobile-menu" id="mobileMenu">
+    <a href="#home">Главная</a>
+    <a href="#news">Новости</a>
+    <a href="#features">Функции</a>
+    <a href="#admins">Команда</a>
+    <a href="#pricing">Цены</a>
+    <a href="#tutorials">Инструкция</a>
+    <a href="#rules">Правила</a>
+    <a href="https://t.me/FLAY_PROJECT" target="_blank">Telegram</a>
+</div>
+
+<div class="container">
+    <section id="home">
+        <h2>FLAY PROJECT</h2>
+        <p style="text-align: center; margin-bottom: 20px;">Премиальный чит для PUBG Mobile</p>
+        
+        <div class="demo-container" id="aimDemo">
+            <div class="target" id="target"></div>
+            <div class="aim-circle" id="aimCircle" style="width: 50px; height: 50px;"></div>
+            <div class="skeleton" id="skeleton">
+                <div class="bone head"></div>
+                <div class="bone spine"></div>
+                <div class="bone arm-left"></div>
+                <div class="bone arm-right"></div>
+                <div class="bone leg-left"></div>
+                <div class="bone leg-right"></div>
+            </div>
+            <div class="esp-box" id="espBox"></div>
+            <div class="hot-bar" id="hotBar">
+                <div class="hot-bar-fill" id="hotBarFill"></div>
+            </div>
+        </div>
+        
+        <div class="demo-controls">
+            <button class="control-btn active" data-control="aim">AimBot</button>
+            <button class="control-btn" data-control="esp">ESP</button>
+            <button class="control-btn" data-control="skeleton">Скелетон</button>
+            <button class="control-btn" data-control="hotbar">Hot Bar</button>
+        </div>
+        
+        <div class="fov-control">
+            <input type="range" min="20" max="100" value="50" class="fov-slider" id="fovSlider">
+            <div class="fov-value">FOV: <span id="fovValue">50</span></div>
+        </div>
+        
+        <div class="feature-desc">
+            <p><strong>AimBot</strong> - автоматическое наведение на противников с регулируемой плавностью и полем зрения (FOV).</p>
+        </div>
+    </section>
+
+    <section id="news">
+        <h2>НОВОСТИ</h2>
+        <div class="news-section">
+            <h3 class="news-title">ОБНОВЛЕНИЕ 1.3</h3>
+            <div class="news-content">
+                <p><strong>ЧТО НОВОГО:</strong></p>
+                <p>• УЛУЧШЕНА АНТИ-БАН ЗАЩИТА</p>
+                <p>• ДОБАВЛЕНО НОВОЕ МЕНЮ</p>
+                <p>• ОПТИМИЗАЦИЯ ПРОИЗВОДИТЕЛЬНОСТИ</p>
+                <p>• ИСПРАВЛЕНЫ БАГИ С ESP</p>
+                <p>• УЛУЧШЕНА СТАБИЛЬНОСТЬ РАБОТЫ</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="features">
+        <h2>ФУНКЦИИ</h2>
+        <div class="tutorial-step">
+            <h3>AimBot</h3>
+            <p>Интеллектуальное наведение на противников с настройкой плавности и радиуса действия.</p>
+        </div>
+        <div class="tutorial-step">
+            <h3>ESP</h3>
+            <p>Отображение противников через стены с различными режимами: боксы, скелетоны, дистанция.</p>
+        </div>
+        <div class="tutorial-step">
+            <h3>No Recoil</h3>
+            <p>Полное устранение отдачи для любого оружия в игре.</p>
+        </div>
+        <div class="tutorial-step">
+            <h3>Magic Bullet</h3>
+            <p>Пули проходят сквозь стены и автоматически попадают в цель.</p>
+        </div>
+    </section>
+    
+    <section id="admins">
+        <h2>КОМАНДА</h2>
+        <div class="admin-card">
+            <h3 class="admin-name">@MihailSecuritu</h3>
+            <div class="admin-role">Главный разработчик</div>
+            <p class="admin-bio">Создатель ядра FLAY PROJECT с 7-летним опытом разработки игровых модификаций.</p>
+            <p class="admin-quote">"Наш чит - это технологическое превосходство."</p>
+        </div>
+        <div class="admin-card">
+            <h3 class="admin-name">@iHOWi</h3>
+            <div class="admin-role">Специалист по безопасности</div>
+            <p class="admin-bio">Обеспечивает защиту от обнаружения и стабильную работу чита.</p>
+            <p class="admin-quote">"Ваша безопасность - наш приоритет."</p>
+        </div>
+    </section>
+
+    <section id="pricing">
+        <h2>ТАРИФЫ</h2>
+        <div class="pricing-section">
+            <div class="pricing-item">
+                <span class="pricing-days">1 ДЕНЬ</span>
+                <span class="pricing-price">110🇷🇺</span>
+                <button class="buy-btn" onclick="window.open('https://t.me/MihailSecuritu', '_blank')">Купить</button>
+            </div>
+            <div class="pricing-item">
+                <span class="pricing-days">3 ДНЯ</span>
+                <span class="pricing-price">360🇷🇺</span>
+                <button class="buy-btn" onclick="window.open('https://t.me/MihailSecuritu', '_blank')">Купить</button>
+            </div>
+            <div class="pricing-item">
+                <span class="pricing-days">7 ДНЕЙ</span>
+                <span class="pricing-price">560🇷🇺</span>
+                <button class="buy-btn" onclick="window.open('https://t.me/MihailSecuritu', '_blank')">Купить</button>
+            </div>
+            <div class="pricing-item">
+                <span class="pricing-days">30 ДНЕЙ</span>
+                <span class="pricing-price">900🇷🇺</span>
+                <button class="buy-btn" onclick="window.open('https://t.me/MihailSecuritu', '_blank')">Купить</button>
+            </div>
+            <div class="pricing-item">
+                <span class="pricing-days">60 ДНЕЙ</span>
+                <span class="pricing-price">1400🇷🇺</span>
+                <button class="buy-btn" onclick="window.open('https://t.me/MihailSecuritu', '_blank')">Купить</button>
+            </div>
+        </div>
+    </section>
+    
+    <section id="tutorials">
+        <h2>ИНСТРУКЦИЯ</h2>
+        <div class="tutorial-step">
+            <h3>Установка APK</h3>
+            <p>1. Скачайте оригинальный PUBG Mobile</p>
+            <p>2. Переименуйте папки com.tencent.ig в Android/data и Android/obb</p>
+            <p>3. Удалите PUBG и установите наш APK</p>
+            <p>4. Верните оригинальные имена папкам</p>
+        </div>
+        <div class="tutorial-step">
+            <h3>Важно!</h3>
+            <p>• Не используйте вход через Google Play и VK</p>
+            <p>• Для Facebook/Twitter удалите их приложения и используйте VPN</p>
+            <p>• "Licence Invalid" - проверьте пробелы в ключе</p>
+        </div>
+    </section>
+
+    <section id="rules">
+        <h2>ПРАВИЛА ИСПОЛЬЗОВАНИЯ</h2>
+        <div class="rules-section">
+            <ul class="rules-list">
+                <li>Не смотрите на противников через стены слишком долго (это подозрительно).</li>
+                <li>Не используйте AimBot на дистанции более 100 метров без маскировки.</li>
+                <li>Избегайте очевидных хакерских действий (например, стрельба через карту).</li>
+                <li>Не рассказывайте в чате о использовании чита.</li>
+                <li>При стриме/записи видео отключайте ESP и другие видимые функции.</li>
+            </ul>
+        </div>
+    </section>
+    
+    <footer>
+        <a href="https://t.me/FLAY_PROJECT" class="telegram-btn">
+            <i class="fab fa-telegram"></i> Наш Telegram
+        </a>
+        <div class="support-bot">
+            Поддержка: @connectmisha_bot
+        </div>
+        <p class="copyright">© 2024 FLAY PROJECT. Все права защищены.</p>
+    </footer>
+</div>
+
+<!-- Переключатель тем -->
+<div class="theme-switcher">
+    <button class="theme-btn theme-default" data-theme="default" title="Стандартная тема">
+        <i class="fas fa-moon"></i>
+    </button>
+    <button class="theme-btn theme-beach" data-theme="beach" title="Пляжная тема">
+        <i class="fas fa-sun"></i>
+    </button>
+    <button class="theme-btn theme-moon" data-theme="moon" title="Лунная тема">
+        <i class="fas fa-moon"></i>
+    </button>
+    <button class="theme-btn theme-laser" data-theme="laser" title="Лазерная тема">
+        <i class="fas fa-bolt"></i>
+    </button>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        menuBtn.addEventListener('click', function() {
+            mobileMenu.classList.toggle('show');
+        });
+
+        const aimCircle = document.getElementById('aimCircle');
+        const target = document.getElementById('target');
+        const skeleton = document.getElementById('skeleton');
+        const espBox = document.getElementById('espBox');
+        const hotBar = document.getElementById('hotBar');
+        const hotBarFill = document.getElementById('hotBarFill');
+        const fovSlider = document.getElementById('fovSlider');
+        const fovValue = document.getElementById('fovValue');
+        const controlBtns = document.querySelectorAll('.control-btn');
+
+        controlBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                controlBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const controlType = this.dataset.control;
+                skeleton.style.opacity = '0';
+                espBox.style.opacity = '0';
+                hotBar.style.opacity = '0';
+                
+                switch(controlType) {
+                    case 'aim':
+                        animateAim();
+                        break;
+                    case 'esp':
+                        espBox.style.opacity = '1';
+                        break;
+                    case 'skeleton':
+                        skeleton.style.opacity = '1';
+                        break;
+                    case 'hotbar':
+                        hotBar.style.opacity = '1';
+                        animateHotBar();
+                        break;
+                }
+            });
+        });
+
+        function animateAim() {
+            const randomX = Math.random() * 70 + 15;
+            const randomY = Math.random() * 70 + 15;
+            target.style.left = randomX + '%';
+            target.style.top = randomY + '%';
+            
+            setTimeout(() => {
+                aimCircle.style.left = target.style.left;
+                aimCircle.style.top = target.style.top;
+            }, 300);
+            setTimeout(animateAim, 2000);
+        }
+
+        function animateHotBar() {
+            let width = 0;
+            const interval = setInterval(() => {
+                width += 5;
+                hotBarFill.style.width = width + '%';
+                if (width >= 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        hotBarFill.style.width = '0%';
+                        animateHotBar();
+                    }, 500);
+                }
+            }, 100);
+        }
+
+        fovSlider.addEventListener('input', function() {
+            const size = this.value;
+            aimCircle.style.width = size + 'px';
+            aimCircle.style.height = size + 'px';
+            fovValue.textContent = size;
+        });
+
+        setTimeout(() => {
+            document.querySelector('[data-control="aim"]').click();
+        }, 500);
+
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if(this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    mobileMenu.classList.remove('show');
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 70,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+        
+        // Переключение тем
+        const themeBtns = document.querySelectorAll('.theme-btn');
+        themeBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const theme = this.dataset.theme;
+                document.body.className = '';
+                if (theme !== 'default') {
+                    document.body.classList.add(theme + '-theme');
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>
