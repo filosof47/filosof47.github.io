@@ -3,1080 +3,459 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FLAY PROJECT - Премиум чит для PUBG Mobile</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Good Room Nightmare | Полный гайд</title>
     <style>
         :root {
-            --main-color: #FF3E3E;
-            --secondary-color: #FF7E7E;
-            --dark-bg: #1A0000;
-            --text-color: #FFE0E0;
+            --main-bg: #0a0a0a;
+            --accent-red: #ff3a3a;
+            --accent-dark: #1a1a1a;
+            --text-light: #e0e0e0;
+            --text-dim: #aaaaaa;
         }
-
-        /* Темы */
-        body.stars-theme {
-            --main-color: #00FEFC;
-            --secondary-color: #6C5CE7;
-            --dark-bg: #00051A;
-            --text-color: #E0F4FF;
-        }
-
-        body.moon-theme {
-            --main-color: #E2E2E2;
-            --secondary-color: #8884FF;
-            --dark-bg: #1A1A2E;
-            --text-color: #FFFFFF;
-        }
-
-        body.blood-theme {
-            --main-color: #FF3E3E;
-            --secondary-color: #FF7E7E;
-            --dark-bg: #1A0000;
-            --text-color: #FFE0E0;
-        }
-
-        * {
-            box-sizing: border-box;
+        
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: var(--main-bg);
+            color: var(--text-light);
             margin: 0;
             padding: 0;
+            line-height: 1.7;
         }
-
-        body {
-            font-family: 'Roboto', sans-serif;
-            color: var(--text-color);
-            background-color: var(--dark-bg);
-            overflow-x: hidden;
-            user-select: none;
-            -webkit-user-select: none;
-            padding-bottom: 20px;
-            transition: background 0.5s ease;
-        }
-
-        @keyframes starfall {
-            0% { transform: translateY(-100vh) rotate(45deg); opacity: 0; }
-            100% { transform: translateY(100vh) rotate(45deg); opacity: 0.7; }
-        }
-
-        @keyframes highlight {
-            0% { background: rgba(255,62,62,0.1); }
-            50% { background: rgba(255,62,62,0.3); }
-            100% { background: rgba(255,62,62,0.1); }
-        }
-
-        .stars-container {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .star {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: white;
-            animation: starfall 8s linear infinite;
-        }
-
-        .mobile-header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(10,10,22,0.95);
-            padding: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 100;
-            border-bottom: 2px solid var(--main-color);
-            backdrop-filter: blur(10px);
-        }
-
-        .logo {
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 700;
-            color: var(--main-color);
-            font-size: 1.5rem;
-            text-shadow: 0 0 15px var(--main-color);
-            letter-spacing: 2px;
-        }
-
-        .menu-btn {
-            color: white;
-            font-size: 1.5rem;
-            background: none;
-            border: none;
-            cursor: pointer;
-        }
-
-        .mobile-menu {
-            position: fixed;
-            top: 60px;
-            right: -100%;
-            width: 70%;
-            height: calc(100vh - 60px);
-            background: rgba(15,15,25,0.98);
-            z-index: 99;
-            transition: right 0.3s ease;
-            padding: 20px;
-            border-left: 2px solid var(--main-color);
-            backdrop-filter: blur(15px);
-        }
-
-        .mobile-menu.show {
-            right: 0;
-        }
-
-        .mobile-menu a {
-            display: block;
-            color: var(--text-color);
-            padding: 15px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            text-decoration: none;
-            font-size: 1.1rem;
-            transition: color 0.3s ease;
-        }
-
-        .mobile-menu a:hover {
-            color: var(--main-color);
-        }
-
-        .container {
-            padding: 80px 15px 20px;
-            max-width: 100%;
-        }
-
-        section {
-            margin-bottom: 30px;
-            padding: 20px 0;
-        }
-
-        h2 {
-            font-family: 'Orbitron', sans-serif;
-            color: var(--main-color);
-            margin-bottom: 20px;
-            font-size: 1.8rem;
-            text-align: center;
-            text-shadow: 0 0 8px var(--main-color);
-        }
-
-        .demo-container {
-            width: 100%;
-            height: 200px;
-            background: rgba(0,0,0,0.3);
-            border: 1px solid var(--main-color);
-            border-radius: 10px;
-            position: relative;
-            overflow: hidden;
-            margin: 15px 0;
-        }
-
-        .target {
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            background: rgba(255,255,255,0.8);
-            border-radius: 50%;
-            top: 30%;
-            left: 30%;
-            transition: opacity 0.3s;
-        }
-
-        .aim-circle {
-            position: absolute;
-            border: 2px solid var(--main-color);
-            border-radius: 50%;
-            background: rgba(108,92,231,0.1);
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            transition: all 0.5s ease;
-        }
-
-        .demo-controls {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 15px;
-            justify-content: center;
-        }
-
-        .control-btn {
-            padding: 10px 20px;
-            background: rgba(108,92,231,0.2);
-            border: 1px solid var(--main-color);
-            color: white;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .control-btn::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(to bottom right, rgba(255,255,255,0.1), rgba(255,255,255,0));
-            transform: rotate(45deg);
-            animation: btnGlow 3s infinite;
-        }
-
-        @keyframes btnGlow {
-            0% { transform: translateX(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) rotate(45deg); }
-        }
-
-        .control-btn.active {
-            background: var(--main-color);
-            box-shadow: 0 0 15px var(--main-color);
-        }
-
-        .theme-switcher {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 100;
+        
+        /* Шапка с анимацией */
+        header {
+            background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
             display: flex;
             flex-direction: column;
-            gap: 5px;
-        }
-
-        .theme-btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 2px solid var(--main-color);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
-        }
-
-        .theme-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 10px var(--main-color);
-        }
-
-        .theme-stars {
-            background: rgba(0,254,252,0.1);
-        }
-
-        .theme-moon {
-            background: rgba(226,226,226,0.1);
-        }
-
-        .theme-blood {
-            background: rgba(255,62,62,0.1);
-        }
-
-        .skeleton {
-            position: absolute;
-            width: 60px;
-            height: 120px;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .bone {
-            position: absolute;
-            background: rgba(255,255,255,0.7);
-        }
-
-        .head {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            top: 0;
-            left: 20px;
-        }
-
-        .spine {
-            width: 4px;
-            height: 40px;
-            top: 20px;
-            left: 28px;
-        }
-
-        .arm-left {
-            width: 25px;
-            height: 4px;
-            top: 25px;
-            left: 5px;
-            transform: rotate(20deg);
-        }
-
-        .arm-right {
-            width: 25px;
-            height: 4px;
-            top: 25px;
-            left: 31px;
-            transform: rotate(-20deg);
-        }
-
-        .leg-left {
-            width: 4px;
-            height: 35px;
-            top: 60px;
-            left: 22px;
-            transform: rotate(5deg);
-        }
-
-        .leg-right {
-            width: 4px;
-            height: 35px;
-            top: 60px;
-            left: 34px;
-            transform: rotate(-5deg);
-        }
-
-        .esp-box {
-            position: absolute;
-            width: 30px;
-            height: 60px;
-            border: 2px dashed var(--main-color);
-            top: 40%;
-            right: 20%;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .hot-bar {
-            position: absolute;
-            width: 100px;
-            height: 15px;
-            background: rgba(108,92,231,0.3);
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            border-radius: 5px;
-            overflow: hidden;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .hot-bar-fill {
-            height: 100%;
-            width: 0%;
-            background: var(--main-color);
-            transition: width 0.5s ease;
-        }
-
-        .fov-control {
-            width: 100%;
-            margin-top: 15px;
-        }
-
-        .fov-slider {
-            width: 100%;
-            -webkit-appearance: none;
-            height: 5px;
-            background: rgba(255,255,255,0.1);
-            outline: none;
-            border-radius: 5px;
-        }
-
-        .fov-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 15px;
-            height: 15px;
-            background: var(--main-color);
-            border-radius: 50%;
-            cursor: pointer;
-            box-shadow: 0 0 5px var(--main-color);
-        }
-
-        .fov-value {
-            text-align: center;
-            margin-top: 5px;
-            font-size: 0.9rem;
-        }
-
-        /* Новые стили для динамических описаний */
-        .desc-item {
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .desc-item.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .feature-desc {
-            margin-top: 15px;
-            font-size: 0.95rem;
-            line-height: 1.5;
-            min-height: 80px;
-        }
-
-        .admin-card {
-            background: rgba(20,20,35,0.9);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
-            border: 1px solid var(--main-color);
-            backdrop-filter: blur(10px);
-            transition: transform 0.3s ease;
-        }
-
-        .admin-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(108,92,231,0.2);
-        }
-
-        .admin-name {
-            text-align: center;
-            font-weight: 500;
-            margin-bottom: 5px;
-            color: var(--main-color);
-            font-family: 'Orbitron', sans-serif;
-        }
-
-        .admin-role {
-            text-align: center;
-            font-size: 0.9rem;
-            color: var(--secondary-color);
-            margin-bottom: 10px;
-        }
-
-        .admin-bio {
-            font-size: 0.9rem;
-            margin-bottom: 10px;
-        }
-
-        .admin-quote {
-            font-style: italic;
-            font-size: 0.85rem;
-            color: #aaa;
-            border-top: 1px dashed rgba(255,255,255,0.1);
-            padding-top: 10px;
-        }
-
-        .pricing-section {
-            background: rgba(20,20,35,0.9);
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-            border: 2px solid var(--main-color);
-        }
-
-        .pricing-item {
-            display: flex;
-            justify-content: space-between;
             align-items: center;
-            padding: 12px;
-            margin: 10px 0;
-            background: rgba(108,92,231,0.1);
-            border-radius: 8px;
-            transition: transform 0.3s ease;
+            text-align: center;
+            padding: 0 20px;
+            animation: pulse 15s infinite alternate;
         }
-
-        .pricing-item:hover {
-            transform: scale(1.02);
+        
+        @keyframes pulse {
+            0% { background-position: 50% 50%; }
+            100% { background-position: 55% 55%; }
         }
-
-        .pricing-days {
-            font-weight: 500;
-            color: var(--main-color);
+        
+        h1 {
+            font-size: 4rem;
+            margin: 0;
+            color: var(--accent-red);
+            text-shadow: 0 0 15px #ff0000;
+            letter-spacing: 3px;
+            animation: flicker 8s infinite alternate;
         }
-
-        .pricing-price {
-            font-family: 'Orbitron', sans-serif;
-            text-shadow: 0 0 8px var(--main-color);
+        
+        @keyframes flicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+            20%, 22%, 24%, 55% { opacity: 0.7; }
         }
-
-        .buy-btn {
-            background: var(--main-color);
+        
+        .subtitle {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 20px 0 40px;
+            color: var(--text-dim);
+        }
+        
+        /* Навигация */
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .nav-btn {
+            padding: 12px 25px;
+            background: var(--accent-red);
             color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 0.8rem;
-            transition: all 0.3s ease;
+            text-decoration: none;
+            border-radius: 3px;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: 1px solid transparent;
         }
-
-        .buy-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 2px 10px var(--main-color);
+        
+        .nav-btn:hover {
+            background: transparent;
+            border-color: var(--accent-red);
+            transform: translateY(-3px);
         }
-
-        .news-section {
-            background: rgba(20,20,35,0.9);
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-            border: 2px solid var(--main-color);
+        
+        /* Основной контент */
+        .container {
+            max-width: 1000px;
+            margin: 60px auto;
+            padding: 0 30px;
+        }
+        
+        section {
+            margin-bottom: 70px;
+            position: relative;
+        }
+        
+        h2 {
+            color: var(--accent-red);
+            font-size: 2.3rem;
+            margin-top: 0;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h2::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-red), transparent);
+        }
+        
+        h3 {
+            color: #ff6b6b;
+            font-size: 1.6rem;
+            margin-top: 40px;
+        }
+        
+        /* Блоки с информацией */
+        .info-block {
+            background: rgba(30, 30, 30, 0.7);
+            padding: 25px;
+            border-left: 4px solid var(--accent-red);
+            margin: 25px 0;
             position: relative;
             overflow: hidden;
         }
-
-        .news-section::before {
-            content: '';
+        
+        .info-block::before {
+            content: "";
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 5px;
-            background: var(--main-color);
-            animation: newsLine 3s infinite linear;
+            height: 100%;
+            background: radial-gradient(circle at 20% 30%, rgba(255, 58, 58, 0.1), transparent 70%);
+            pointer-events: none;
         }
-
-        @keyframes newsLine {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
+        
+        /* Списки */
+        ul.feature-list {
+            list-style-type: none;
+            padding-left: 0;
         }
-
-        .news-title {
-            color: var(--main-color);
-            margin-bottom: 10px;
-            font-size: 1.3rem;
-            font-family: 'Orbitron', sans-serif;
-        }
-
-        .news-content {
-            font-size: 0.9rem;
-            line-height: 1.5;
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px 15px;
-            margin-top: 30px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .telegram-btn {
-            display: inline-block;
-            background: var(--main-color);
-            color: white;
-            padding: 12px 25px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: 500;
-            margin-bottom: 15px;
-            transition: all 0.3s ease;
+        
+        ul.feature-list li {
+            padding: 8px 0;
             position: relative;
-            overflow: hidden;
+            padding-left: 25px;
         }
-
-        .telegram-btn::before {
-            content: '';
+        
+        ul.feature-list li::before {
+            content: "▹";
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(to bottom right, rgba(255,255,255,0.3), rgba(255,255,255,0));
-            transform: rotate(30deg);
-            animation: shine 3s infinite;
+            left: 0;
+            color: var(--accent-red);
         }
-
-        @keyframes shine {
-            0% { transform: translateX(-100%) rotate(30deg); }
-            100% { transform: translateX(100%) rotate(30deg); }
+        
+        /* Таблицы */
+        .room-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: rgba(20, 20, 20, 0.6);
         }
-
-        .telegram-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px var(--main-color);
+        
+        .room-table th {
+            background: rgba(255, 58, 58, 0.2);
+            color: var(--accent-red);
+            padding: 15px;
+            text-align: left;
+            border-bottom: 2px solid var(--accent-red);
         }
-
-        .support-bot {
-            color: var(--secondary-color);
-            margin: 15px 0;
-            font-size: 0.9rem;
+        
+        .room-table td {
+            padding: 15px;
+            border-bottom: 1px solid #333;
         }
-
-        .copyright {
-            font-size: 0.8rem;
-            color: #aaa;
+        
+        .room-table tr:hover {
+            background: rgba(255, 58, 58, 0.05);
         }
-
-        .rules-section {
-            background: rgba(20,20,35,0.9);
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-            border: 2px solid var(--main-color);
+        
+        /* Вывод */
+        .conclusion {
+            background: rgba(255, 58, 58, 0.1);
+            padding: 30px;
+            border: 1px dashed var(--accent-red);
+            margin-top: 50px;
         }
-
-        .rules-list {
-            padding-left: 20px;
+        
+        .conclusion h3 {
+            margin-top: 0;
         }
-
-        .rules-list li {
-            margin-bottom: 8px;
-            font-size: 0.9rem;
-            position: relative;
-        }
-
-        .rules-list li::before {
-            content: '•';
-            color: var(--main-color);
-            position: absolute;
-            left: -15px;
-        }
-
-        @keyframes glitch {
-            0% { text-shadow: 0.05em 0 0 #00fffc, -0.05em -0.025em 0 #fc00ff; }
-            14% { text-shadow: 0.05em 0 0 #00fffc, -0.05em -0.025em 0 #fc00ff; }
-            15% { text-shadow: -0.05em -0.025em 0 #00fffc, 0.025em 0.025em 0 #fc00ff; }
-            49% { text-shadow: -0.05em -0.025em 0 #00fffc, 0.025em 0.025em 0 #fc00ff; }
-            50% { text-shadow: 0.025em 0.05em 0 #00fffc, 0.05em 0 0 #fc00ff; }
-            99% { text-shadow: 0.025em 0.05em 0 #00fffc, 0.05em 0 0 #fc00ff; }
-            100% { text-shadow: -0.025em 0 0 #00fffc, -0.025em -0.025em 0 #fc00ff; }
-        }
-
-        .glitch-text {
-            animation: glitch 5s infinite;
-        }
-
-        .quick-nav {
+        
+        .checklist {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
-            justify-content: center;
-            margin: 20px 0;
-            padding: 0 10px;
+            gap: 15px;
         }
-
-        .nav-btn {
-            padding: 8px 15px;
-            background: rgba(108,92,231,0.2);
-            border: 1px solid var(--main-color);
-            color: white;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            white-space: nowrap;
+        
+        .check-item {
+            background: rgba(255, 58, 58, 0.2);
+            padding: 10px 15px;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
         }
-
-        .nav-btn:hover {
-            background: var(--main-color);
-            transform: translateY(-2px);
-            box-shadow: 0 2px 10px var(--main-color);
+        
+        .check-item::before {
+            content: "✓";
+            color: var(--accent-red);
+            margin-right: 8px;
+            font-weight: bold;
         }
-
-        @media (max-width: 768px) {
-            .quick-nav {
-                gap: 5px;
-            }
-            .nav-btn {
-                padding: 6px 12px;
-                font-size: 0.8rem;
-            }
+        
+        /* Подвал */
+        footer {
+            text-align: center;
+            padding: 40px;
+            background: #111;
+            margin-top: 80px;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+        
+        /* Анимации */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
         }
     </style>
 </head>
-<body class="blood-theme">
-    <div class="stars-container" id="starsContainer"></div>
-
-    <div class="mobile-header">
-        <div class="logo">FLAY PROJECT</div>
-        <button class="menu-btn" id="menuBtn">
-            <i class="fas fa-bars"></i>
-        </button>
-    </div>
-
-    <div class="mobile-menu" id="mobileMenu">
-        <a href="#home">Главная</a>
-        <a href="#news">Новости</a>
-        <a href="#features">Функции</a>
-        <a href="#admins">Команда</a>
-        <a href="#pricing">Цены</a>
-        <a href="#tutorials">Инструкция</a>
-        <a href="#rules">Правила</a>
-        <a href="https://t.me/FLAY_PROJECT" target="_blank">Telegram</a>
-    </div>
-
-    <div class="container">
-        <div class="quick-nav">
-            <button class="nav-btn" data-section="news">Новости</button>
-            <button class="nav-btn" data-section="features">Функции</button>
-            <button class="nav-btn" data-section="pricing">Цены</button>
-            <button class="nav-btn" data-section="tutorials">Инструкция</button>
-            <button class="nav-btn" data-section="rules">Правила</button>
-            <button class="nav-btn" onclick="window.open('https://t.me/FLAY_PROJECT', '_blank')">Канал</button>
+<body>
+    <!-- Шапка с анимированным фоном -->
+    <header>
+        <h1 class="floating">GOOD ROOM NIGHTMARE</h1>
+        <p class="subtitle">Полное руководство по созданию атмосферного хоррор-плейса в Roblox</p>
+        <div class="nav-links">
+            <a href="#concept" class="nav-btn">Концепция</a>
+            <a href="#music" class="nav-btn">Атмосфера</a>
+            <a href="#rooms" class="nav-btn">Комнаты</a>
+            <a href="#features" class="nav-btn">Фишки</a>
         </div>
+    </header>
 
-        <section id="home">
-            <h2 class="glitch-text">FLAY PROJECT</h2>
-            <p style="text-align: center; margin-bottom: 20px;">Самый безопасный высокоуровневый чит для PUBG Mobile с защитой от бана</p>
+    <!-- Основное содержимое -->
+    <div class="container">
+        <!-- Концепция -->
+        <section id="concept">
+            <h2>1. Название и концепция</h2>
             
-            <div class="demo-container" id="aimDemo">
-                <div class="target" id="target"></div>
-                <div class="aim-circle" id="aimCircle" style="width: 50px; height: 50px;"></div>
-                <div class="skeleton" id="skeleton">
-                    <div class="bone head"></div>
-                    <div class="bone spine"></div>
-                    <div class="bone arm-left"></div>
-                    <div class="bone arm-right"></div>
-                    <div class="bone leg-left"></div>
-                    <div class="bone leg-right"></div>
-                </div>
-                <div class="esp-box" id="espBox"></div>
-                <div class="hot-bar" id="hotBar">
-                    <div class="hot-bar-fill" id="hotBarFill"></div>
-                </div>
-            </div>
-            
-            <div class="demo-controls">
-                <button class="control-btn active" data-control="aim">AimBot</button>
-                <button class="control-btn" data-control="esp">ESP</button>
-                <button class="control-btn" data-control="skeleton">Скелетон</button>
-                <button class="control-btn" data-control="hotbar">Hot Bar</button>
-            </div>
-            
-            <div class="fov-control">
-                <input type="range" min="20" max="100" value="50" class="fov-slider" id="fovSlider">
-                <div class="fov-value">FOV: <span id="fovValue">50</span></div>
-            </div>
-            
-            <div class="feature-desc">
-                <div id="aim-desc" class="desc-item active">
-                    <p><strong>AimBot</strong> - автоматическое наведение на противников с регулируемой плавностью и полем зрения (FOV). После выключения точка прицеливания остается на последней цели.</p>
-                </div>
-                <div id="esp-desc" class="desc-item">
-                    <p><strong>ESP</strong> - режим сквозного зрения: отображение врагов через стены, их здоровья и экипировки в реальном времени.</p>
-                </div>
-                <div id="skeleton-desc" class="desc-item">
-                    <p><strong>Скелетон</strong> - отображение костной структуры противников для точного определения уязвимых точек.</p>
-                </div>
-                <div id="hotbar-desc" class="desc-item">
-                    <p><strong>Hot Bar</strong> - интеллектуальная панель быстрого доступа к оружию и расходникам с автоматической оптимизацией инвентаря.</p>
-                </div>
+            <div class="info-block">
+                <h3>Название проекта</h3>
+                <ul class="feature-list">
+                    <li><strong>"Good Room Nightmare"</strong> (основное англоязычное название)</li>
+                    <li><strong>"Сон в Хорошей Комнате"</strong> (русская версия)</li>
+                    <li><strong>"Falling into Fear"</strong> (альтернативный вариант)</li>
+                </ul>
+                
+                <h3>Основная идея</h3>
+                <p>Игрок засыпает в "хорошей комнате" (уютная спальня с ковром, ночником и шкафом), но затем проваливается в кошмарные уровни-комнаты. Чтобы выбраться, нужно решать головоломки, избегать монстров и находить выход из каждого уровня.</p>
             </div>
         </section>
 
-        <section id="news">
-            <h2>НОВОСТИ</h2>
-            <div class="news-section">
-                <h3 class="news-title">ОБНОВЛЕНИЕ 1.4</h3>
-                <div class="news-content">
-                    <p><strong>ЧТО НОВОГО:</strong></p>
-                    <p>• УСИЛЕНА АНТИ-БАН ЗАЩИТА</p>
-                    <p>• ДОБАВЛЕНА НОВАЯ СИСТЕМА MAGIC BULLET 2.0</p>
-                    <p>• ОПТИМИЗАЦИЯ ПРОИЗВОДИТЕЛЬНОСТИ НА 30%</p>
-                    <p>• ИСПРАВЛЕНЫ МЕЛКИЕ БАГИ</p>
-                    <p>• УЛУЧШЕНА СТАБИЛЬНОСТЬ РАБОТЫ</p>
-                </div>
-            </div>
-        </section>
-        
-        <section id="features">
-            <h2>ФУНКЦИИ</h2>
-            <div class="tutorial-step">
-                <h3>AimBot</h3>
-                <p>Интеллектуальное наведение на противников с настройкой плавности и радиуса действия. После выключения точка прицеливания остается на последней цели.</p>
-            </div>
-            <div class="tutorial-step">
-                <h3>ESP</h3>
-                <p>Отображение противников через стены с различными режимами: боксы, скелетоны, дистанция, здоровье и инвентарь.</p>
-            </div>
-            <div class="tutorial-step">
-                <h3>No Recoil</h3>
-                <p>Полное устранение отдачи для любого оружия в игре. Автоматическая настройка под каждый тип оружия.</p>
-            </div>
-            <div class="tutorial-step">
-                <h3>Magic Bullet</h3>
-                <p>Пули появляются прямо у цели, создавая эффект мгновенного попадания без видимого полета пули. При выстреле в воздух пули автоматически попадают в ближайшего противника.</p>
-            </div>
-        </section>
-        
-        <section id="admins">
-            <h2>КОМАНДА</h2>
-            <div class="admin-card">
-                <h3 class="admin-name">@MihailSecuritu</h3>
-                <div class="admin-role">Главный разработчик</div>
-                <p class="admin-bio">Создатель ядра FLAY PROJECT с 7-летним опытом разработки игровых модификаций и систем защиты.</p>
-                <p class="admin-quote">"Мы не взламываем системы - мы становимся частью их кода." — Mr. Robot</p>
-            </div>
-            <div class="admin-card">
-                <h3 class="admin-name">@iHOWi</h3>
-                <div class="admin-role">Специалист по безопасности</div>
-                <p class="admin-bio">Обеспечивает защиту от обнаружения и стабильную работу чита. Эксперт в области анти-детекта и обхода систем защиты.</p>
-                <p class="admin-quote">"Истинная анонимность - это когда даже тень не оставляет следов." — Mr. Robot</p>
-            </div>
-            <div class="admin-card">
-                <h3 class="admin-name">@FlaySupport</h3>
-                <div class="admin-role">Техническая поддержка</div>
-                <p class="admin-bio">Помогает пользователям с настройкой и решением технических вопросов. Работает 24/7.</p>
-                <p class="admin-quote">"Каждая ошибка - это дверь в систему. Нужно лишь найти правильный ключ." — Mr. Robot</p>
-            </div>
-        </section>
-
-        <section id="pricing">
-            <h2>ТАРИФЫ</h2>
-            <div class="pricing-section">
-                <div class="pricing-item">
-                    <span class="pricing-days">1 ДЕНЬ</span>
-                    <span class="pricing-price">90₽</span>
-                    <button class="buy-btn" onclick="window.open('https://t.me/MihailSecuritu', '_blank')">Купить</button>
-                </div>
-                <div class="pricing-item">
-                    <span class="pricing-days">3 ДНЯ</span>
-                    <span class="pricing-price">230₽</span>
-                    <button class="buy-btn" onclick="window.open('https://t.me/MihailSecuritu', '_blank')">Купить</button>
-                </div>
-                <div class="pricing-item">
-                    <span class="pricing-days">7 ДНЕЙ</span>
-                    <span class="pricing-price">400₽</span>
-                    <button class="buy-btn" onclick="window.open('https://t.me/MihailSecuritu', '_blank')">Купить</button>
-                </div>
-                <div class="pricing-item">
-                    <span class="pricing-days">30 ДНЕЙ</span>
-                    <span class="pricing-price">600₽</span>
-                    <button class="buy-btn" onclick="window.open('https://t.me/MihailSecuritu', '_blank')">Купить</button>
-                </div>
-                <div class="pricing-item">
-                    <span class="pricing-days">60 ДНЕЙ</span>
-                    <span class="pricing-price">900₽</span>
-                    <button class="buy-btn" onclick="window.open('https://t.me/MihailSecuritu', '_blank')">Купить</button>
-                </div>
-            </div>
-        </section>
-        
-        <section id="tutorials">
-            <h2>ИНСТРУКЦИЯ</h2>
-            <div class="tutorial-step">
-                <h3>Установка APK</h3>
-                <p>1. Скачайте оригинальный PUBG Mobile</p>
-                <p>2. Переименуйте папки com.tencent.ig в Android/data и Android/obb</p>
-                <p>3. Удалите PUBG и установите наш APK</p>
-                <p>4. Верните оригинальные имена папкам</p>
-            </div>
-            <div class="tutorial-step">
-                <h3>Важно!</h3>
-                <p>• Не используйте вход через Google Play и VK</p>
-                <p>• Для Facebook/Twitter удалите их приложения и используйте VPN</p>
-                <p>• "Licence Invalid" - проверьте пробелы в ключе</p>
-                <p>• При первом запуске дайте все разрешения</p>
-            </div>
-        </section>
-
-        <section id="rules">
-            <h2>ПРАВИЛА ИСПОЛЬЗОВАНИЯ</h2>
-            <div class="rules-section">
-                <ul class="rules-list">
-                    <li>Не смотрите на противников через стены слишком долго (это подозрительно).</li>
-                    <li>Не используйте AimBot на дистанции более 100 метров без маскировки.</li>
-                    <li>Избегайте очевидных хакерских действий (например, стрельба через карту).</li>
-                    <li>Не рассказывайте в чате о использовании чита.</li>
-                    <li>При стриме/записи видео отключайте ESP и другие видимые функции.</li>
-                    <li>Используйте Magic Bullet умеренно, не делайте очевидных выстрелов в воздух.</li>
+        <!-- Музыка и атмосфера -->
+        <section id="music">
+            <h2>2. Музыка и атмосфера в меню</h2>
+            
+            <div class="info-block">
+                <h3>Саундтрек для меню</h3>
+                <ul class="feature-list">
+                    <li>Тихое, жуткое пианино (в стиле "Layers of Fear")</li>
+                    <li>Лёгкий, но тревожный эмбиент (как в "Silent Hill")</li>
+                    <li>Варианты из Roblox Audio Library:
+                        <ul class="feature-list">
+                            <li>"Creepy Music Box"</li>
+                            <li>"Horror Ambience"</li>
+                            <li>"Eerie Piano Loop"</li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                <h3>Фон меню</h3>
+                <ul class="feature-list">
+                    <li>Тёмная комната с едва видной кроватью, вдали — силуэт монстра</li>
+                    <li>Альтернатива: статичное изображение падающего игрока сквозь уровни</li>
                 </ul>
             </div>
         </section>
-        
-        <footer>
-            <a href="https://t.me/FLAY_PROJECT" class="telegram-btn">
-                <i class="fab fa-telegram"></i> Наш Telegram
-            </a>
-            <div class="support-bot">
-                Поддержка: @connectmisha_bot
-            </div>
-            <p class="copyright">© 2024 FLAY PROJECT. Все права защищены.</p>
-        </footer>
-</div>
 
-    <div class="theme-switcher">
-        <button class="theme-btn theme-stars" data-theme="stars" title="Звездопад">
-            <i class="fas fa-star"></i>
-        </button>
-        <button class="theme-btn theme-moon" data-theme="moon" title="Луна во тьме">
-            <i class="fas fa-moon"></i>
-        </button>
-        <button class="theme-btn theme-blood" data-theme="blood" title="Кровавая луна">
-            <i class="fas fa-fire"></i>
-        </button>
+        <!-- Первая комната -->
+        <section>
+            <h2>3. Первая комната (начало игры)</h2>
+            
+            <div class="info-block">
+                <h3>Описание локации</h3>
+                <ul class="feature-list">
+                    <li>Игрок лежит на кровати в уютной спальне</li>
+                    <li>Детали интерьера:
+                        <ul class="feature-list">
+                            <li>Мягкий ковёр</li>
+                            <li>Тёплый ночник</li>
+                            <li>Деревянный шкаф</li>
+                            <li>Окно с видом на дождь</li>
+                        </ul>
+                    </li>
+                    <li>Через 10-15 секунд кровать проваливается, игрок падает в следующую локацию</li>
+                </ul>
+                
+                <h3>Звуковое сопровождение</h3>
+                <ul class="feature-list">
+                    <li>Скрип кровати перед падением</li>
+                    <li>Тихий шёпот в комнате</li>
+                    <li>Внезапный громкий звук в момент падения</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Уровни и комнаты -->
+        <section id="rooms">
+            <h2>4. Уровни и комнаты</h2>
+            
+            <div class="info-block">
+                <p>Каждый уровень — новая комната с уникальной головоломкой и монстром.</p>
+                
+                <h3>Комната 1: Детская (первый страх)</h3>
+                <table class="room-table">
+                    <tr>
+                        <th>Элемент</th>
+                        <th>Описание</th>
+                    </tr>
+                    <tr>
+                        <td>Оформление</td>
+                        <td>Разбросанные игрушки, разбитая люстра, детские рисунки на стенах</td>
+                    </tr>
+                    <tr>
+                        <td>Головоломка</td>
+                        <td>Нужно собрать 5 кукол, расставленных по комнате, чтобы открыть дверь</td>
+                    </tr>
+                    <tr>
+                        <td>Монстр</td>
+                        <td>"Девочка с куклой" — медленно идёт к игроку, но замирает, если на неё смотреть</td>
+                    </tr>
+                </table>
+                
+                <h3>Комната 2: Больничная палата</h3>
+                <table class="room-table">
+                    <tr>
+                        <th>Элемент</th>
+                        <th>Описание</th>
+                    </tr>
+                    <tr>
+                        <td>Оформление</td>
+                        <td>Разорванные шторы, капельницы с жидкостью, следы крови на полу и стенах</td>
+                    </tr>
+                    <tr>
+                        <td>Головоломка</td>
+                        <td>Найти 3 ампулы с лекарствами и ввести их в манекен пациента</td>
+                    </tr>
+                    <tr>
+                        <td>Монстр</td>
+                        <td>"Доктор-скелет" — быстро бежит на источник звука (шаги игрока)</td>
+                    </tr>
+                </table>
+                
+                <h3>Комната 3: Подвал</h3>
+                <table class="room-table">
+                    <tr>
+                        <th>Элемент</th>
+                        <th>Описание</th>
+                    </tr>
+                    <tr>
+                        <td>Оформление</td>
+                        <td>Густая паутина, ржавые клетки, тухлое мясо на крюках</td>
+                    </tr>
+                    <tr>
+                        <td>Головоломка</td>
+                        <td>Активировать 4 рубильника в разных углах комнаты, избегая монстра</td>
+                    </tr>
+                    <tr>
+                        <td>Монстр</td>
+                        <td>"Тень" — невидимый, но оставляет мокрые следы на полу</td>
+                    </tr>
+                </table>
+                
+                <h3>Финал: Возвращение в "хорошую комнату"</h3>
+                <ul class="feature-list">
+                    <li>Всё выглядит как в начале игры</li>
+                    <li>Финальный джампскейр: при взгляде в зеркало игрок видит отражение монстра за своей спиной</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Дополнительная атмосфера -->
+        <section>
+            <h2>5. Дополнительная атмосфера</h2>
+            
+            <div class="info-block">
+                <h3>Визуальные эффекты</h3>
+                <ul class="feature-list">
+                    <li>Динамический свет: мигающие лампы, мерцающие свечи</li>
+                    <li>Эффекты на стенах: кровь, царапины, невидимые надписи</li>
+                    <li>Туман в некоторых комнатах для создания глубины</li>
+                </ul>
+                
+                <h3>Звуковая атмосфера</h3>
+                <ul class="feature-list">
+                    <li>Случайные звуки: стуки, смех, шаги за стеной</li>
+                    <li>Эхо в больших помещениях</li>
+                    <li>Нарастающий гул при приближении к важным объектам</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Фишки игры -->
+        <section id="features">
+            <h2>6. Имба (фишки игры)</h2>
+            
+            <div class="info-block">
+                <h3>Уникальные механики</h3>
+                <ul class="feature-list">
+                    <li><strong>Режим "Бесконечный кошмар"</strong> — после побега комната меняет планировку, а монстры становятся агрессивнее</li>
+                    <li><strong>Секретные записки</strong> — кусочки лора, объясняющие историю места</li>
+                    <li><strong>Рандомные события</strong> — 10% шанс, что монстр появится неожиданно даже в "безопасных" зонах</li>
+                </ul>
+            </div>
+            
+            <div class="conclusion">
+                <h3>Вывод: как сделать по-настоящему страшно</h3>
+                <div class="checklist">
+                    <div class="check-item">Тревожная музыка с диссонансами</div>
+                    <div class="check-item">Неожиданные скримеры (но без перебора)</div>
+                    <div class="check-item">Давление на психику (шёпот, тени, необъяснимые звуки)</div>
+                    <div class="check-item">Эффект неожиданности (случайные события)</div>
+                    <div class="check-item">Детализированные окружения с историей</div>
+                </div>
+            </div>
+        </section>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Мобильное меню
-            const menuBtn = document.getElementById('menuBtn');
-            const mobileMenu = document.getElementById('mobileMenu');
-            menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('show'));
-
-            // Элементы управления демо
-            const controlBtns = document.querySelectorAll('.control-btn');
-            const target = document.getElementById('target');
-            const aimCircle = document.getElementById('aimCircle');
-            const skeleton = document.getElementById('skeleton');
-            const espBox = document.getElementById('espBox');
-            const hotBar = document.getElementById('hotBar');
-            const hotBarFill = document.getElementById('hotBarFill');
-            const fovSlider = document.getElementById('fovSlider');
-            const fovValue = document.getElementById('fovValue');
-
-            let aimAnimationInterval = null;
-            let hotBarAnimationInterval = null;
-
-            function stopAllAnimations() {
-                if (aimAnimationInterval) clearInterval(aimAnimationInterval);
-                if (hotBarAnimationInterval) clearInterval(hotBarAnimationInterval);
-            }
-
-            controlBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    stopAllAnimations();
-                    controlBtns.forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    // Скрыть все элементы
-                    target.style.opacity = '0';
-                    skeleton.style.opacity = '0';
-                    espBox.style.opacity = '0';
-                    hotBar.style.opacity = '0';
-                    aimCircle.style.opacity = '0';
-
-                    // Скрыть все описания
-                    document.querySelectorAll('.desc-item').forEach(item => {
-                        item.classList.remove('active');
-                    });
-
-                    // Показать выбранный элемент и описание
-                    switch(this.dataset.control) {
-                        case 'aim':
-                            target.style.opacity = '1';
-                            aimCircle.style.opacity = '1';
-                            document.getElementById('aim-desc').classList.add('active');
-                            animateAim();
-                            break;
-                        case 'esp':
-                            espBox.style.opacity = '1';
-                            document.getElementById('esp-desc').classList.add('active');
-                            break;
-                        case 'skeleton':
-                            skeleton.style.opacity = '1';
-                            document.getElementById('skeleton-desc').classList.add('active');
-                            break;
-                        case 'hotbar':
-                            hotBar.style.opacity = '1';
-                            document.getElementById('hotbar-desc').classList.add('active');
-                            animateHotBar();
-                            break;
-                    }
-                });
-            });
-
-            function animateAim() {
-                const moveTarget = () => {
-                    const randomX = Math.random() * 70 + 15;
-                    const randomY = Math.random() * 70 + 15;
-                    target.style.left = `${randomX}%`;
-                    target.style.top = `${randomY}%`;
-                    
-                    setTimeout(() => {
-                        aimCircle.style.left = target.style.left;
-                        aimCircle.style.top = target.style.top;
-                    }, 300);
-                };
-                aimAnimationInterval = setInterval(moveTarget, 2000);
-                moveTarget();
-            }
-
-            function animateHotBar() {
-                let width = 0;
-                hotBarFill.style.width = '0%';
-                
-                hotBarAnimationInterval = setInterval(() => {
-                    width += 5;
-                    hotBarFill.style.width = `${width}%`;
-                    if (width >= 100) {
-                        clearInterval(hotBarAnimationInterval);
-                        setTimeout(() => {
-                            hotBarFill.style.width = '0%';
-                            animateHotBar();
-                        }, 500);
-                    }
-                }, 100);
-            }
-
-            // Настройка FOV
-            fovSlider.addEventListener('input', function() {
-                const size = this.value;
-                aimCircle.style.width = `${size}px`;
-                aimCircle.style.height = `${size}px`;
-                fovValue.textContent = size;
-            });
-
-            // Инициализация AimBot
-            setTimeout(() => document.querySelector('[data-control="aim"]').click(), 500);
-
-            // Навигация по якорям
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const section = document.querySelector(this.getAttribute('href'));
-                    if (section) {
-                        window.scrollTo({
-                            top: section.offsetTop - 70,
-                            behavior: 'smooth'
-                        });
-                        section.style.animation = 'highlight 1.5s';
-                        setTimeout(() => section.style.animation = '', 1500);
-                    }
-                });
-            });
-
-            // Быстрая навигация
-            document.querySelectorAll('.nav-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const section = document.getElementById(this.dataset.section);
-                    if (section) {
-                        window.scrollTo({
-                            top: section.offsetTop - 70,
-                            behavior: 'smooth'
-                        });
-                        section.style.animation = 'highlight 1.5s';
-                        setTimeout(() => section.style.animation = '', 1500);
-                    }
-                });
-            });
-
-            // Генерация звезд
-            function createStars() {
-                const container = document.getElementById('starsContainer');
-                for(let i = 0; i < 100; i++) {
-                    const star = document.createElement('div');
-                    star.className = 'star';
-                    star.style.left = `${Math.random() * 100}%`;
-                    star.style.animationDelay = `${Math.random() * 8}s`;
-                    star.style.opacity = Math.random();
-                    container.appendChild(star);
-                }
-            }
-            createStars();
-
-            // Переключение тем
-            document.querySelectorAll('.theme-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    document.body.className = `${this.dataset.theme}-theme`;
-                });
-            });
-        });
-    </script>
+    <!-- Подвал -->
+    <footer>
+        <p>Good Room Nightmare — полный гайд по созданию хоррор-плейса в Roblox</p>
+        <p>Используйте эти материалы как основу для своего проекта</p>
+    </footer>
 </body>
-</html>
+                        </html>
