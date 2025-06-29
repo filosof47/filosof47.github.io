@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PROJECT NAME - Читы PUBG</title>
+    <title>Trojan Cheat - Премиум читы</title>
     <style>
         * {
             margin: 0;
@@ -42,7 +42,7 @@
         .circle:nth-child(1) {
             width: 300px;
             height: 300px;
-            background: #ff4500;
+            background: #9c27b0;
             top: 20%;
             left: 10%;
         }
@@ -50,7 +50,7 @@
         .circle:nth-child(2) {
             width: 400px;
             height: 400px;
-            background: #00a8ff;
+            background: #6a1b9a;
             top: 60%;
             left: 30%;
             animation-delay: 2s;
@@ -59,7 +59,7 @@
         .circle:nth-child(3) {
             width: 250px;
             height: 250px;
-            background: #9c27b0;
+            background: #3f51b5;
             top: 30%;
             left: 70%;
             animation-delay: 4s;
@@ -68,7 +68,7 @@
         .circle:nth-child(4) {
             width: 350px;
             height: 350px;
-            background: #ffd700;
+            background: #2196f3;
             top: 70%;
             left: 80%;
             animation-delay: 1s;
@@ -77,7 +77,7 @@
         .circle:nth-child(5) {
             width: 200px;
             height: 200px;
-            background: #00ff7f;
+            background: #00bcd4;
             top: 40%;
             left: 50%;
             animation-delay: 3s;
@@ -103,7 +103,7 @@
             z-index: 100;
             display: flex;
             justify-content: center;
-            border-bottom: 1px solid #ff4500;
+            border-bottom: 1px solid #9c27b0;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
 
@@ -123,9 +123,9 @@
         }
 
         nav a:hover, nav a.active {
-            background: #ff4500;
+            background: #9c27b0;
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(255, 69, 0, 0.4);
+            box-shadow: 0 5px 15px rgba(156, 39, 176, 0.4);
         }
 
         /* Книжный эффект */
@@ -157,11 +157,11 @@
 
         /* Стили страниц */
         .page h1 {
-            color: #ff4500;
+            color: #9c27b0;
             text-align: center;
             margin-bottom: 30px;
             font-size: 2.5rem;
-            text-shadow: 0 0 10px rgba(255, 69, 0, 0.5);
+            text-shadow: 0 0 10px rgba(156, 39, 176, 0.5);
         }
 
         .card {
@@ -183,7 +183,7 @@
         .btn {
             display: inline-block;
             padding: 12px 25px;
-            background: linear-gradient(45deg, #ff4500, #ff8c00);
+            background: linear-gradient(45deg, #9c27b0, #673ab7);
             color: white;
             border: none;
             border-radius: 50px;
@@ -192,12 +192,75 @@
             transition: all 0.3s ease;
             text-align: center;
             margin-top: 10px;
-            box-shadow: 0 4px 15px rgba(255, 69, 0, 0.3);
+            box-shadow: 0 4px 15px rgba(156, 39, 176, 0.3);
         }
 
         .btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 7px 20px rgba(255, 69, 0, 0.4);
+            box-shadow: 0 7px 20px rgba(156, 39, 176, 0.4);
+        }
+
+        /* Акционный баннер */
+        .promo-banner {
+            background: linear-gradient(90deg, rgba(106,27,154,0.3), rgba(63,81,181,0.3));
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #9c27b0;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(156, 39, 176, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(156, 39, 176, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(156, 39, 176, 0); }
+        }
+
+        /* Функции */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .feature-item {
+            background: rgba(40, 40, 40, 0.6);
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 3px solid #9c27b0;
+        }
+
+        .feature-title {
+            color: #00bcd4;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        /* Таблица цен */
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .price-table th, .price-table td {
+            padding: 12px 15px;
+            text-align: center;
+            border-bottom: 1px solid #333;
+        }
+
+        .price-table th {
+            background: rgba(156, 39, 176, 0.1);
+            color: #9c27b0;
+        }
+
+        .price-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .price-table tr:hover {
+            background: rgba(156, 39, 176, 0.05);
         }
 
         /* Команда */
@@ -217,77 +280,8 @@
         .role-icon {
             font-size: 2.5rem;
             margin-bottom: 15px;
-            color: #ff4500;
-            text-shadow: 0 0 15px rgba(255, 69, 0, 0.5);
-        }
-
-        /* Функции */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .feature-item {
-            background: rgba(40, 40, 40, 0.6);
-            padding: 15px;
-            border-radius: 10px;
-            border-left: 3px solid #ff4500;
-        }
-
-        .feature-title {
-            color: #00a8ff;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        /* Валютные переключатели */
-        .currency-tabs {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-            gap: 10px;
-        }
-
-        .currency-tab {
-            padding: 8px 15px;
-            background: rgba(40, 40, 40, 0.6);
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s;
-            border: 1px solid #333;
-        }
-
-        .currency-tab.active {
-            background: #ff4500;
-            border-color: #ff4500;
-        }
-
-        /* Таблица цен */
-        .price-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        .price-table th, .price-table td {
-            padding: 12px 15px;
-            text-align: center;
-            border-bottom: 1px solid #333;
-        }
-
-        .price-table th {
-            background: rgba(255, 69, 0, 0.1);
-            color: #ff4500;
-        }
-
-        .price-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .price-table tr:hover {
-            background: rgba(255, 69, 0, 0.05);
+            color: #9c27b0;
+            text-shadow: 0 0 15px rgba(156, 39, 176, 0.5);
         }
 
         /* Индикатор страниц */
@@ -311,9 +305,9 @@
         }
 
         .indicator-dot.active {
-            background: #ff4500;
+            background: #9c27b0;
             transform: scale(1.3);
-            box-shadow: 0 0 10px #ff4500;
+            box-shadow: 0 0 10px #9c27b0;
         }
 
         /* Адаптация для телефонов */
@@ -371,15 +365,6 @@
             .page h1 {
                 font-size: 1.8rem;
             }
-            
-            .currency-tabs {
-                flex-wrap: wrap;
-            }
-            
-            .currency-tab {
-                padding: 6px 12px;
-                font-size: 14px;
-            }
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -398,7 +383,7 @@
     <nav>
         <a href="#" class="nav-link active" data-page="0"><i class="fas fa-home"></i> Главная</a>
         <a href="#" class="nav-link" data-page="1"><i class="fas fa-tag"></i> Цены</a>
-        <a href="#" class="nav-link" data-page="2"><i class="fas fa-users"></i> Команда</a>
+        <a href="#" class="nav-link" data-page="2"><i class="fas fa-users"></i> Контакты</a>
     </nav>
 
     <!-- Книга -->
@@ -406,10 +391,10 @@
         <!-- Страница 1: Главная -->
         <div class="page">
             <div class="content">
-                <h1>название</h1>
+                <h1>Trojan Cheat</h1>
                 
                 <div class="card">
-                    <h2>Мощный чит для PUBG</h2>
+                    <h2>Премиум чит для PUBG</h2>
                     <p style="margin: 15px 0;">Самый продвинутый софт с уникальными возможностями:</p>
                     
                     <div class="features-grid">
@@ -455,21 +440,11 @@
                                 Качественная система защиты
                             </li>
                             <li style="margin-bottom: 10px; display: flex; align-items: center;">
-                                <i class="fas fa-crosshairs" style="color: #ff4500; margin-right: 10px;"></i>
+                                <i class="fas fa-crosshairs" style="color: #9c27b0; margin-right: 10px;"></i>
                                 Точный и надежный Aimbot
-                            </li>
-                            <li style="margin-bottom: 10px; display: flex; align-items: center;">
-                                <i class="fas fa-ban" style="color: #9c27b0; margin-right: 10px;"></i>
-                                Без root-прав
-                            </li>
-                            <li style="margin-bottom: 10px; display: flex; align-items: center;">
-                                <i class="fas fa-lock" style="color: #00ff7f; margin-right: 10px;"></i>
-                                Лучший антибан на рынке
                             </li>
                         </ul>
                     </div>
-                    
-                    <a href="https://t.me/Mental_disorder_illustration" target="_blank" class="btn">Купить сейчас <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -479,108 +454,124 @@
             <div class="content">
                 <h1>Наши тарифы</h1>
                 
+                <div class="promo-banner">
+                    <h3 style="margin-top: 0;">🔥 Акция: Купи ключ - получи второй в подарок!</h3>
+                    <p>При покупке любого ключа получи второй ключ бесплатно - для друга или для ТГК!</p>
+                </div>
+                
                 <div class="card">
-                    <div class="currency-tabs">
-                        <div class="currency-tab active" data-currency="uah">🇺🇦 Гривны (UAH)</div>
-                        <div class="currency-tab" data-currency="rub">🇷🇺 Рубли (RUB)</div>
-                        <div class="currency-tab" data-currency="kzt">🇰🇿 Тенге (KZT)</div>
-                    </div>
-                    
                     <table class="price-table">
                         <thead>
                             <tr>
                                 <th>Период</th>
-                                <th>Цена</th>
+                                <th>Цена (RUB)</th>
+                                <th>Бонус</th>
                                 <th>Действие</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
+                                <td>5 часов</td>
+                                <td>60 ₽</td>
+                                <td>-</td>
+                                <td><a href="https://t.me/MishkaBearry" target="_blank" class="btn" style="padding: 8px 15px; display: inline-block; text-decoration: none;">Купить</a></td>
+                            </tr>
+                            <tr>
                                 <td>1 день</td>
-                                <td class="price-value" data-uah="70" data-rub="145" data-kzt="920">70 UAH</td>
-                                <td><a href="https://t.me/Mental_disorder_illustration" target="_blank" class="btn" style="padding: 8px 15px; display: inline-block; text-decoration: none;">Купить</a></td>
+                                <td>110 ₽</td>
+                                <td>5 часов</td>
+                                <td><a href="https://t.me/MishkaBearry" target="_blank" class="btn" style="padding: 8px 15px; display: inline-block; text-decoration: none;">Купить</a></td>
                             </tr>
                             <tr>
                                 <td>3 дня</td>
-                                <td class="price-value" data-uah="170" data-rub="350" data-kzt="2500">170 UAH</td>
-                                <td><a href="https://t.me/Mental_disorder_illustration" target="_blank" class="btn" style="padding: 8px 15px; display: inline-block; text-decoration: none;">Купить</a></td>
+                                <td>360 ₽</td>
+                                <td>5 часов</td>
+                                <td><a href="https://t.me/MishkaBearry" target="_blank" class="btn" style="padding: 8px 15px; display: inline-block; text-decoration: none;">Купить</a></td>
                             </tr>
                             <tr>
                                 <td>7 дней</td>
-                                <td class="price-value" data-uah="315" data-rub="800" data-kzt="5000">315 UAH</td>
-                                <td><a href="https://t.me/Mental_disorder_illustration" target="_blank" class="btn" style="padding: 8px 15px; display: inline-block; text-decoration: none;">Купить</a></td>
+                                <td>560 ₽</td>
+                                <td>1 день</td>
+                                <td><a href="https://t.me/MishkaBearry" target="_blank" class="btn" style="padding: 8px 15px; display: inline-block; text-decoration: none;">Купить</a></td>
                             </tr>
                             <tr>
                                 <td>30 дней</td>
-                                <td class="price-value" data-uah="685" data-rub="1300" data-kzt="8100">685 UAH</td>
-                                <td><a href="https://t.me/Mental_disorder_illustration" target="_blank" class="btn" style="padding: 8px 15px; display: inline-block; text-decoration: none;">Купить</a></td>
+                                <td>900 ₽</td>
+                                <td>7 дней</td>
+                                <td><a href="https://t.me/MishkaBearry" target="_blank" class="btn" style="padding: 8px 15px; display: inline-block; text-decoration: none;">Купить</a></td>
+                            </tr>
+                            <tr>
+                                <td>60 дней</td>
+                                <td>1400 ₽</td>
+                                <td>30 дней</td>
+                                <td><a href="https://t.me/MishkaBearry" target="_blank" class="btn" style="padding: 8px 15px; display: inline-block; text-decoration: none;">Купить</a></td>
+                            </tr>
+                            <tr>
+                                <td>Навсегда</td>
+                                <td>1600 ₽</td>
+                                <td>60 дней</td>
+                                <td><a href="https://t.me/MishkaBearry" target="_blank" class="btn" style="padding: 8px 15px; display: inline-block; text-decoration: none;">Купить</a></td>
                             </tr>
                         </tbody>
                     </table>
                     
-                    <div style="margin-top: 20px; text-align: center; color: #aaa; font-size: 0.9rem;">
-                        <p>Мы принимаем только указанные валюты. Выбор валюты определяет способ оплаты.</p>
+                    <div style="margin-top: 20px; background: rgba(106, 27, 154, 0.1); padding: 15px; border-radius: 10px;">
+                        <h4>Как работает акция:</h4>
+                        <ol style="margin: 10px 0; padding-left: 20px;">
+                            <li style="margin-bottom: 8px;">Покупаешь ключ (например, 30 дней за 900₽)</li>
+                            <li style="margin-bottom: 8px;">Выбираешь бонус:
+                                <ul style="margin-top: 5px; padding-left: 20px;">
+                                    <li style="margin-bottom: 5px;">Другу - даришь 7 дней (бесплатно)</li>
+                                    <li>В ТГК - открываешь доступ на 7 дней для всех</li>
+                                </ul>
+                            </li>
+                        </ol>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Страница 3: Команда -->
+        <!-- Страница 3: Контакты -->
         <div class="page">
             <div class="content">
-                <h1>Наша команда</h1>
-                <div class="team">
-                    <!-- Разработчик 1 -->
-                    <div class="card team-member">
-                        <div class="role-icon">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <h3>Ведущий разработчик</h3>
-                        <p>@юзтгггг</p>
-                        <p><i class="fab fa-telegram" style="color: #0088cc;"></i> @юзтгггг</p>
-                        <p style="margin-top: 10px; color: #aaa;">Архитектура системы, ядро чита</p>
-                    </div>
-                    
-                    <!-- Разработчик 2 -->
-                    <div class="card team-member">
-                        <div class="role-icon">
-                            <i class="fas fa-laptop-code"></i>
-                        </div>
-                        <h3>Разработчик</h3>
-                        <p>@юзтгггг</p>
-                        <p><i class="fab fa-telegram" style="color: #0088cc;"></i> @юзтгггг</p>
-                        <p style="margin-top: 10px; color: #aaa;">Разработка функций, оптимизация</p>
-                    </div>
-                    
-                    <!-- Менеджер 1 -->
-                    <div class="card team-member">
-                        <div class="role-icon">
-                            <i class="fas fa-headset"></i>
-                        </div>
-                        <h3>Менеджер поддержки</h3>
-                        <p>@support_manager</p>
-                        <p><i class="fab fa-telegram" style="color: #0088cc;"></i> @support_mng_tg</p>
-                        <p style="margin-top: 10px; color: #aaa;">Решение вопросов, помощь пользователям</p>
-                    </div>
-                    
-                    <!-- Менеджер 2 -->
-                    <div class="card team-member">
-                        <div class="role-icon">
-                            <i class="fas fa-user-tie"></i>
-                        </div>
-                        <h3>VIP менеджер</h3>
-                        <p>@юзтгггг</p>
-                        <p><i class="fab fa-telegram" style="color: #0088cc;"></i> @юзтгггг</p>
-                        <p style="margin-top: 10px; color: #aaa;">Персональное обслуживание VIP клиентов</p>
-                    </div>
-                </div>
+                <h1>Наши контакты</h1>
                 
-                <div class="card" style="margin-top: 20px; text-align: center;">
-                    <h3>Присоединяйтесь к нам!</h3>
-                    <p style="margin: 15px 0;">Телеграм канал с обновлениями и новостями</p>
-                    <a href="https://t.me/perexodnikbot2" target="_blank" class="btn" style="background: linear-gradient(45deg, #0088cc, #00a8ff); text-decoration: none;">
-                        <i class="fab fa-telegram"></i> Telegram канал
-                    </a>
+                <div class="card">
+                    <h2>Свяжитесь с нами</h2>
+                    
+                    <div class="team">
+                        <!-- Менеджер -->
+                        <div class="card team-member">
+                            <div class="role-icon">
+                                <i class="fas fa-headset"></i>
+                            </div>
+                            <h3>Менеджер</h3>
+                            <p>@MishkaBearry</p>
+                            <a href="https://t.me/MishkaBearry" target="_blank" class="btn" style="padding: 8px 15px; margin-top: 10px; text-decoration: none;">
+                                <i class="fab fa-telegram"></i> Написать
+                            </a>
+                        </div>
+                        
+                        <!-- Разработчик -->
+                        <div class="card team-member">
+                            <div class="role-icon">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <h3>Разработчик</h3>
+                            <p>@MihailSecuritu</p>
+                            <a href="https://t.me/MihailSecuritu" target="_blank" class="btn" style="padding: 8px 15px; margin-top: 10px; text-decoration: none;">
+                                <i class="fab fa-telegram"></i> Написать
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 20px; text-align: center;">
+                        <h3>Наш Telegram канал</h3>
+                        <p style="margin: 10px 0;">Все новости и обновления</p>
+                        <a href="https://t.me/+nZSZanZtImAxZjky" target="_blank" class="btn" style="background: linear-gradient(45deg, #0088cc, #00a8ff); text-decoration: none;">
+                            <i class="fab fa-telegram"></i> Перейти в канал
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -638,44 +629,6 @@
                 circle.style.transform = `translate(${x * speed}px, ${y * speed}px) rotate(${x * speed}deg)`;
             });
         });
-
-        // Переключение валют
-        const currencyTabs = document.querySelectorAll('.currency-tab');
-        const priceValues = document.querySelectorAll('.price-value');
-        
-        currencyTabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                // Убираем активный класс у всех
-                currencyTabs.forEach(t => t.classList.remove('active'));
-                // Добавляем активный класс текущей
-                tab.classList.add('active');
-                
-                // Получаем выбранную валюту
-                const currency = tab.getAttribute('data-currency');
-                
-                // Обновляем цены
-                priceValues.forEach(item => {
-                    const uah = item.getAttribute('data-uah');
-                    const rub = item.getAttribute('data-rub');
-                    const kzt = item.getAttribute('data-kzt');
-                    
-                    if (currency === 'uah') {
-                        item.textContent = `${uah} UAH`;
-                    } else if (currency === 'rub') {
-                        item.textContent = `${rub} RUB`;
-                    } else if (currency === 'kzt') {
-                        item.textContent = `${kzt} KZT`;
-                    }
-                });
-            });
-        });
-
-        // Автопереключение для демонстрации
-        let currentPage = 0;
-        setInterval(() => {
-            currentPage = (currentPage + 1) % 3;
-            goToPage(currentPage);
-        }, 8000);
     </script>
 </body>
 </html>
